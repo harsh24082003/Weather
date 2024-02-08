@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="weather.css">
+    <link rel="shortcut icon" href="weath.png" type="image/x-icon">
+    <title>Wheather or Not</title>
+</head>
+
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" name="" id="" placeholder="Enter City Name" spellcheck="false">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="weather">
+            <img src="cloud.png" alt="bdl" class="wthr-icn">
+            <h1 class="temp">--ºC</h1>
+            <h2 class="city">New York</h2><br>
+            <div class="details">
+                <div class="col">
+                    <img src="humid.png" alt="">
+                    <div>
+                        <p class="weath">--</p>
+                        <p>Weather</p>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <img src="wind.png" alt="">
+                    <div>
+                        <p class="wind">--km/h</p>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+<script>
+    const apiurl = "https://goweather.herokuapp.com/weather/";
+    // const name=prompt("Enter name Of State:")
+    const api = apiurl;
+    
+    const search=document.querySelector(".search input ");
+    const searchbtn=document.querySelector(".search button ");
+
+    console.log(api)
+
+    async function checkweather(state) {
+        const res = await fetch(api+state);
+        var data = await res.json();
+        console.log(data)
+
+        document.querySelector(".city").innerHTML = name
+        document.querySelector(".wind").innerHTML = data.wind
+        document.querySelector(".temp").innerHTML = data.temperature
+        document.querySelector(".weath").innerHTML = data.description
+    }
+
+    searchbtn.addEventListener("click",()=>{
+        checkweather(search.value);
+    })
+
+</script>
+
+</html>
